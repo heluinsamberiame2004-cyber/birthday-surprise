@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Birthday Surprise</title>
+
+<style>
+body {
+  margin: 0;
+  background: #f5f2ee;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  max-width: 720px;
+  margin: auto;
+  padding: 10px;
+}
+
+.frame {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* VIDEO stays natural */
+.frame video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* IMAGES scaled slightly bigger */
+.frame img {
+  width: 110%;          /* 👈 makes photo bigger */
+  height: 110%;
+  object-fit: cover;
+  transform: translate(-5%, -5%);
+}
+
+/* CLICK HERE overlay */
+#clickHere {
+  position: absolute;
+  bottom: 60px;
+  right: 40px;
+  color: #b7a9a0;
+  font-weight: bold;
+  letter-spacing: 2px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+#video,
+#birthday {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <div class="frame">
+
+    <!-- GIFT IMAGE -->
+    <img id="gift" src="gift.jpg" alt="Gift">
+
+    <!-- CLICK HERE -->
+    <div id="clickHere">CLICK HERE</div>
+
+    <!-- VIDEO -->
+    <video id="video" playsinline>
+      <source src="confetti.mp4" type="video/mp4">
+    </video>
+
+    <!-- BIRTHDAY IMAGE -->
+    <img id="birthday" src="birthday.jpg" alt="Birthday">
+
+  </div>
+
+  <!-- MUSIC -->
+  <audio id="music">
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+</div>
+
+<script>
+const clickHere = document.getElementById("clickHere");
+const gift = document.getElementById("gift");
+const video = document.getElementById("video");
+const birthday = document.getElementById("birthday");
+const music = document.getElementById("music");
+
+clickHere.onclick = () => {
+  clickHere.style.display = "none";
+  gift.style.display = "none";
+
+  music.play();
+  video.style.display = "block";
+  video.play();
+};
+
+video.onended = () => {
+  video.style.display = "none";
+  birthday.style.display = "block";
+};
+</script>
+
+</body>
+</html>
